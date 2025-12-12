@@ -1,7 +1,6 @@
+const words = ["СОНЦЕ", "ГРА", "БУДИНОК", "ЯБЛУКО", "ПРОГРАМА"]; // трохи коротші слова
 
-const words = ["СОНЦЕ", "КОМП'ЮТЕР", "ГАМАК", "БУДИНОК", "ЯБЛУКО", "ПРОГРАМА"];
 
-// Масив файлів зображень (4 зображення)
 const imageFiles = [
   "images/step0.png",
   "images/step1.png",
@@ -9,22 +8,19 @@ const imageFiles = [
   "images/step3.png"
 ];
 
-// Максимальна кількість помилок
+
 const MAX_MISTAKES = imageFiles.length - 1;
 
-// Ігровий стан
 let chosenWord = "";
 let guessed = [];
 let mistakes = 0;
 
-// DOM-елементи
 const wordDiv = document.getElementById("word");
 const lettersDiv = document.getElementById("letters");
 const message = document.getElementById("message");
 const restartBtn = document.getElementById("restartBtn");
 const hangmanImage = document.getElementById("hangman-image");
 
-// --- Ініціалізація гри ---
 function startGame() {
   chosenWord = words[Math.floor(Math.random() * words.length)];
   guessed = [];
@@ -37,7 +33,6 @@ function startGame() {
   updateImage();
 }
 
-// Показ слова (з підкресленнями)
 function renderWord() {
   const display = chosenWord.split("").map(ch => {
     if (!isCyrillicLetter(ch)) return ch;
@@ -45,13 +40,11 @@ function renderWord() {
   }).join(" ");
   wordDiv.textContent = display;
 
-  // Перевірка на перемогу
   if (!display.includes("_")) {
     endGame(true);
   }
 }
 
-// Генерація кнопок української абетки
 function generateLetterButtons() {
   lettersDiv.innerHTML = "";
   const alphabet = [..."АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ'"];
@@ -64,7 +57,6 @@ function generateLetterButtons() {
   });
 }
 
-// Обробка відгадування букви
 function handleGuess(letter, btn) {
   if (btn.disabled) return;
   btn.disabled = true;
@@ -86,18 +78,15 @@ function handleGuess(letter, btn) {
   }
 }
 
-// Оновлення зображення шибениці
 function updateImage() {
   const idx = Math.min(mistakes, imageFiles.length - 1);
   hangmanImage.src = imageFiles[idx];
 }
 
-// Перевірка, чи символ — літера української абетки
 function isCyrillicLetter(ch) {
   return /[А-ЯҐЄІЇ'’]/i.test(ch);
 }
 
-// Завершення гри
 function endGame(win) {
   const buttons = lettersDiv.querySelectorAll("button");
   buttons.forEach(b => b.disabled = true);
@@ -113,8 +102,6 @@ function endGame(win) {
   restartBtn.style.display = "block";
 }
 
-// Кнопка повторної гри
 restartBtn.addEventListener("click", startGame);
 
-// Запуск гри
 startGame();

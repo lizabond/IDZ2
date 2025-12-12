@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background: #f2f2f2;
+    background: #f5f0e6; /* бежевий фон */
     text-align: center;
 }
 
@@ -13,13 +13,18 @@ h1 {
     width: 350px;
     margin: 30px auto;
     padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    background: #fff5e6; /* світліший бежевий */
+    border: 1px solid #d1bfa7; /* строгий квадратний контур */
 }
 
 #hangman-image {
     width: 250px;
+    margin-bottom: 10px;
+}
+
+.attempts-info {
+    font-size: 16px;
+    color: #555;
     margin-bottom: 15px;
 }
 
@@ -34,8 +39,8 @@ h1 {
     padding: 10px;
     font-size: 18px;
     cursor: pointer;
-    border-radius: 5px;
     border: 1px solid #aaa;
+    background-color: #f2f2f2;
 }
 
 .letters button.correct {
@@ -54,15 +59,14 @@ h1 {
     padding: 10px 20px;
     margin-top: 20px;
     display: none;
-    background-color: #2196F3;
+    background-color: #999; /* сірий колір кнопки */
     color: white;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
 }
 
 .restart-btn:hover {
-    background-color: #1976D2;
+    background-color: #777; /* темніший сірий при наведенні */
 }
 
 .message {
