@@ -1,15 +1,16 @@
-const words = ["СОНЦЕ", "ГРА", "БУДИНОК", "ЯБЛУКО", "ПРОГРАМА"]; // трохи коротші слова
+const words = ["СОНЦЕ", "ГРА", "БУДИНОК", "ЯБЛУКО", "ПРОГРАМА"]; // коротші слова
 
 
 const imageFiles = [
   "images/step0.png",
   "images/step1.png",
   "images/step2.png",
-  "images/step3.png"
+  "images/step3.png",
+  "images/step4.png"  
 ];
 
 
-const MAX_MISTAKES = imageFiles.length - 1;
+const MAX_MISTAKES = 4;
 
 let chosenWord = "";
 let guessed = [];
@@ -27,7 +28,7 @@ function startGame() {
   mistakes = 0;
   message.textContent = "";
   restartBtn.style.display = "none";
-  hangmanImage.src = imageFiles[0];
+  hangmanImage.src = imageFiles[0]; 
   generateLetterButtons();
   renderWord();
   updateImage();
@@ -72,7 +73,7 @@ function handleGuess(letter, btn) {
     btn.classList.add("wrong");
     updateImage();
 
-    if (mistakes >= MAX_MISTAKES) {
+    if (mistakes >= MAX_MISTAKES) { 
       endGame(false);
     }
   }
@@ -92,10 +93,10 @@ function endGame(win) {
   buttons.forEach(b => b.disabled = true);
 
   if (win) {
-    message.textContent = "🎉 Ви виграли!";
+    message.textContent = "Ви виграли!";
     message.style.color = "green";
   } else {
-    message.textContent = `💀 Ви програли. Слово: ${chosenWord}`;
+    message.textContent = `Ви програли. Слово: ${chosenWord}`;
     message.style.color = "red";
     wordDiv.textContent = chosenWord.split("").join(" ");
   }
