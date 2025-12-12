@@ -2,7 +2,7 @@ const words = ["СОНЦЕ", "ГРА", "БУДИНОК", "ЯБЛУКО", "ПРО
 
 
 const imageFiles = [
-  "images/step0.png",
+  "images/step0.png", 
   "images/step1.png",
   "images/step2.png",
   "images/step3.png",
@@ -21,6 +21,7 @@ const lettersDiv = document.getElementById("letters");
 const message = document.getElementById("message");
 const restartBtn = document.getElementById("restartBtn");
 const hangmanImage = document.getElementById("hangman-image");
+const attemptsInfo = document.getElementById("attempts-info");
 
 function startGame() {
   chosenWord = words[Math.floor(Math.random() * words.length)];
@@ -29,6 +30,7 @@ function startGame() {
   message.textContent = "";
   restartBtn.style.display = "none";
   hangmanImage.src = imageFiles[0]; 
+  updateAttempts();
   generateLetterButtons();
   renderWord();
   updateImage();
@@ -72,6 +74,7 @@ function handleGuess(letter, btn) {
     mistakes++;
     btn.classList.add("wrong");
     updateImage();
+    updateAttempts();
 
     if (mistakes >= MAX_MISTAKES) { 
       endGame(false);
@@ -84,6 +87,10 @@ function updateImage() {
   hangmanImage.src = imageFiles[idx];
 }
 
+function updateAttempts() {
+  attemptsInfo.textContent = `У вас залишилось спроб: ${MAX_MISTAKES - mistakes}`;
+}
+
 function isCyrillicLetter(ch) {
   return /[А-ЯҐЄІЇ'’]/i.test(ch);
 }
@@ -93,10 +100,10 @@ function endGame(win) {
   buttons.forEach(b => b.disabled = true);
 
   if (win) {
-    message.textContent = "Ви виграли!";
+    message.textContent = "🎉 Ви виграли!";
     message.style.color = "green";
   } else {
-    message.textContent = `Ви програли. Слово: ${chosenWord}`;
+    message.textContent = `💀 Ви програли. Слово: ${chosenWord}`;
     message.style.color = "red";
     wordDiv.textContent = chosenWord.split("").join(" ");
   }
