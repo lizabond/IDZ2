@@ -100,10 +100,10 @@ function endGame(win) {
   buttons.forEach(b => b.disabled = true);
 
   if (win) {
-    message.textContent = "Ви виграли!";
+    message.textContent = "Ви виграли. Вітаю!";
     message.style.color = "green";
   } else {
-    message.textContent = `Ви програли. Слово: ${chosenWord}`;
+    message.textContent = `Ви програли, спробуйте ще. Слово: ${chosenWord}`;
     message.style.color = "red";
     wordDiv.textContent = chosenWord.split("").join(" ");
   }
